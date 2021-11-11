@@ -46,8 +46,11 @@ for customer in results[:1]:
 
     try:
         inventory_id = cur.fetchall()[0][0]
+        print(inventory_id)
     except IndexError:
         print(customer)
+    print(inventory_id)
+
 
     cur.execute(f"select film_id from inventory where inventory_id = {inventory_id}")
     film_id = cur.fetchall()
