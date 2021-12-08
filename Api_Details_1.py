@@ -1,9 +1,16 @@
 import psycopg2
+import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 """Establishing the connection"""
-conn = psycopg2.connect(
-   database="universities", user='postgres', password='postgres', host='127.0.0.1', port= '5432'
-)
+conn = psycopg2.connect(database=os.getenv('DATABASE'),
+                        user=os.getenv('USER_HOST'),
+                        password=os.getenv('PASSWORD'),
+                        host=os.getenv('HOST'),
+                        port=os.getenv('PORT')
+                        )
 """Creating a cursor object using the cursor() method"""
 cursor = conn.cursor()
 
