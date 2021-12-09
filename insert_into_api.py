@@ -15,6 +15,7 @@ conn = psycopg2.connect(database=os.getenv('DATABASE'),
 conn.autocommit = True
 cursor = conn.cursor()
 
+"""CREATE API TABLE"""
 sql = '''CREATE TABLE IF NOT EXISTS API_TABLE_NEW(
    API TEXT,
    Description TEXT,
@@ -30,7 +31,6 @@ cursor.execute(sql)
 
 with open('api_data.json') as data_file:
     data = json.load(data_file)
-    # print(data)
 
 for dict in data:
 

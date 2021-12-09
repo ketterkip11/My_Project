@@ -15,7 +15,7 @@ conn = psycopg2.connect(database=os.getenv('DATABASE'),
 cursor = conn.cursor()
 
 """Creating table as per requirement"""
-sql ='''CREATE TABLE APIz(
+sql ='''CREATE TABLE IF NOT EXISTS API(
    API TEXT,
    Description TEXT,
    Auth TEXT,
@@ -27,14 +27,14 @@ sql ='''CREATE TABLE APIz(
 cursor.execute(sql)
 print("Table created successfully........")
 conn.commit()
-
-with open('data.csv', 'r') as f:
-   next(f)
-
-   cursor.copy_from(f, 'data.csv', sep=',')
-   conn.commit()
-
-   conn.close()
-
-f.close()
+#
+# with open('data.csv', 'r') as f:
+#    next(f)
+#
+#    cursor.copy_from(f, 'data.csv', sep=',')
+#    conn.commit()
+#
+#    conn.close()
+#
+# f.close()
 
