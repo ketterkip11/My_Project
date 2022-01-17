@@ -26,7 +26,7 @@ class Database:
 
     def create_table(self):
         self.connect()
-        sql = ('CREATE TABLE IF NOT EXISTS NEW_TABLE(API TEXT,Description TEXT,Auth TEXT,HTTPS TEXT,Cors TEXT,Link TEXT,Category TEXT')
+        sql = '''CREATE TABLE IF NOT EXISTS NEW_TABLE(API TEXT,Description TEXT,Auth TEXT,HTTPS TEXT,Cors TEXT,Link TEXT,Category TEXT);'''
         result = self.cursor.execute(sql)
         # result = self.cursor.fetchall()
         return result
