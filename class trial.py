@@ -1,3 +1,5 @@
+import json
+
 import psycopg2
 import os
 from dotenv import load_dotenv, find_dotenv
@@ -31,10 +33,22 @@ class Database:
         # result = self.cursor.fetchall()
         return result
 
-    def execute(self, sql):
+    def load_json(self):
         self.connect()
-        self.cursor.execute(sql)
+        with open('api_data.json') as data_file:
+            data = json.load(data_file)
+        return data
 
-print(Database().connect())
-print(Database().create_table())
+    def insert_into_table(self):
+        self.connect()
+
+
+
+
+
+
+
+# print(Database().connect())
+# print(Database().create_table())
+# print(Database().load_json())
 
