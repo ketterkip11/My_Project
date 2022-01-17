@@ -9,28 +9,32 @@ load_dotenv(find_dotenv())
 
 class Database:
 
-    def __init__(self):
-        self.database = 'universities'
-        self.user = 'postgres'
-        self.password = 'postgres'
-        self.host = '127.0.0.1'
-        self.port = 5432
+    def __init__(self, database = 'universities', user='postgres', password='postgres', host='127.0.0.1', port='5432'):
+        self.database = database
+        self.user = user
+        self.password = password
+        self.host = host
+        self.port = port
 
 
-    def __connect__(self):
+    def connect(self):
         self.conn = psycopg2.connect(database=self.database, user=self.user, password=self.password, host=self.host, port=self.port)
         self.cursor = self.conn.cursor()
-        return "database successfuly connected"
+        return "database successfully connected"
 
 
 
     def create_table(self):
-        self.__connect__()
+        self.connect()
         sql = ('CREATE TABLE IF NOT EXISTS NEW_TABLE(API TEXT,Description TEXT,Auth TEXT,HTTPS TEXT,Cors TEXT,Link TEXT,Category TEXT')
         result = self.cursor.execute(sql)
         # result = self.cursor.fetchall()
         return result
 
     def execute(self, sql):
-        self.__connect__()
+        self.connect()
         self.cursor.execute(sql)
+
+print(Database().connect())
+print(Database().create_table())
+
