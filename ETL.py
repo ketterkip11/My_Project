@@ -18,6 +18,7 @@ cur.execute("select customer_id_1, staff_id, rental_id from payment")
 rows = cur.fetchall()
 # print(rows)
 
+
 """loop through the tuple"""
 payments = []
 for value in rows:

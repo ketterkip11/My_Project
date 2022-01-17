@@ -22,3 +22,4 @@ sql = '''CREATE database Universities''';
 """creating Database"""
 cursor.execute(sql)
 print("Database Created Succesfully....")
+
