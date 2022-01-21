@@ -23,10 +23,6 @@ class DatabaseConnector:
     def connection(self):
         conn = psycopg2.connect(database=self.database, user=self.user, password=self.password, host=self.host, port=self.port)
         cursor = conn.cursor()
-        # cursor.execute(sql)
-        # data = cursor.fetchall()
-        # print("Db connection created")
-        # print('cursor', type(cursor), cursor)
         return cursor, conn
 
 
@@ -43,11 +39,11 @@ class DatabaseConnector:
         records = cursor.fetchall()
         return records
 
-    def update_data(self):
-        var_conn = psycopg2.connect(database=self.database, user=self.user, password=self.password, host=self.host, port=self.port)
-        cursor = var_conn.cursor()
-        cursor.execute(sql, vars=('kenya', 'web_pages', 'Moi University', 'africa', 'domains'))
-        var_conn.commit()
+    # def update_data(self):
+    #     var_conn = psycopg2.connect(database=self.database, user=self.user, password=self.password, host=self.host, port=self.port)
+    #     cursor = var_conn.cursor()
+    #     cursor.execute(sql, vars=('kenya', 'web_pages', 'Moi University', 'africa', 'domains'))
+    #     var_conn.commit()
 
 
     # def load_json(self):
@@ -62,29 +58,30 @@ class DatabaseConnector:
         with open('api_data.json') as data_file:
             data = json.load(data_file)
 
-            for dict in data:
-                API = dict['API']
-                Description = dict['Description']
-                Auth = dict['Auth']
-                HTTPS = dict['HTTPS']
-                Cors = dict['Cors']
-                Link = dict['Link']
-                Category = dict['Category']
+            for d in data:
+                API = d['API']
+                Description = d['Description']
+                Auth = d['Auth']
+                HTTPS = d['HTTPS']
+                Cors = d['Cors']
+                Link = d['Link']
+                Category = d['Category']
 
-                values = ((API, Description, Auth, HTTPS, Cors, Link, Category))
+                values = (API, Description, Auth, HTTPS, Cors, Link, Category)
 
-            cursor.execute(query_sql, values)
+                query_sql = (f"INSERT INTO NEW_TABLE(API,Description,Auth,HTTPS,Cors,Link,Category) "
+                             f"VALUES(%s,%s,%s,%s,%s,%s,%s)")
+
+                cursor.execute(query_sql, values)
             data_results = var_conn.commit()
             return data_results
 
 if __name__ == '__main__':
     sql = "CREATE TABLE IF NOT EXISTS NEW_TABLE(API TEXT,Description TEXT,Auth TEXT,HTTPS TEXT,Cors TEXT,Link TEXT,Category TEXT);"
     sql = 'SELECT * FROM public.universities_website'
-    # query_sql = """INSERT INTO NEW_TABLE select * from json_populate_recordset(NULL::NEW_TABLE, %s); """
-    query_sql = (f"INSERT INTO NEW_TABLE(API,Description,Auth,HTTPS,Cors,Link,Category) "
-                f"VALUES(%s,%s,%s,%s,%s,%s,%s)")
+
     dbc = DatabaseConnector()
-    # dbc.create_table(sql)
+    dbc.create_table(sql)
     dbc.select_data()
     dbc.insert_into_table()
 
