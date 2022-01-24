@@ -1,4 +1,5 @@
 
+"""a function to reverse a number"""
 
 def rev_number(My_Number):
     reverse_num = 0
@@ -9,7 +10,7 @@ def rev_number(My_Number):
     return reverse_num
 
 if __name__ == "__main__" :
-    My_Number = int(input('Please provide number to be reversed::'))
+    My_Number = int(input('Please provide number to be reversed: '))
     print('Reversed number is:', rev_number(My_Number))
 
 
