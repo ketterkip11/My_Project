@@ -6,7 +6,7 @@ import plotly.express as px
 
 import pandas as pd
 
-data = pd.read_csv('/home/ketter/PycharmProjects/pythonProject1/avocado.csv')
+data = pd.read_csv('/home/ketter/PycharmProjects/My_Project/avocado.csv')
 # print(data)
 data = data.query("type == 'conventional' and region == 'Albany'")
 data["Date"] = pd.to_datetime(data["Date"], format="%Y-%m-%d")

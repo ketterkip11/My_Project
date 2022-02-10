@@ -1,24 +1,25 @@
-# import requests
-# import json
-# import pandas as pd
-#
-# tickers = ['ABSA', 'ARM', 'BAT','ARM','BAMB','BAT','BKG','BOC','BRIT','CABL','CARB','CGEN','CIC','COOP','CRWN','CTUM','DCON','DTK','EABL','EGAD','EQTY','EVRD','FAHR','TGH','GLD','HAFR','HBE','HFCK','I&M,''JUB','KAPC','KCB','KEGN','KNRE','KPLC','KPLC-P4','KPLC-P7','KQ','KUKZ','KURV','LBTY','LIMT','LKL','MSC','NBK','NBV','NCBA','NMG','NSE','OCH','ORCH','PORT','SASN','SBIC','SCAN','SCBK','SCOM', 'SGL','SLAM','SMER','TCL','TOTL','TPSE','UCHM','UMME','UNGA','WTK','XPRS']
-# df = pd.DataFrame()
-# for ticker in tickers:
-#     f'df_{ticker}'
-#     name = 'df_' +str(ticker)
-#     url = f'http://nse-data-api.herokuapp.com/data/{ticker}'
-#     response = requests.get(url)
-#     data = json.loads(response.text)
-#     name = pd.json_normalize(data)
-#     pd.set_option('display.max_columns',None)
-#     df.merge(name, on='ticker')
-#     # print(name.head())
-#     # print(df.head)
+import requests
+import json
+import pandas as pd
 
-sales = ["Vauxhall Corsa 2011", "Nissan Note 2014", "Honda Civic 2012", "Vauxhall Corsa 2015", "Vauxhall Mokka 2013", "Hyundai I20 2016"]
-for sale in range(0, len(sales)):
-    print(sales[sale])
+tickers = ['BAMB','XPRS']
+df = pd.DataFrame()
+for ticker in tickers:
+    f'df_{ticker}'
+    name = 'df_' +str(ticker)
+    url = f'http://nse-data-api.herokuapp.com/data/{ticker}'
+    response = requests.get(url)
+    data = json.loads(response.text)
+    name = pd.json_normalize(data)
+    # pd.set_option('display.max_columns',None)
+    # df.merge(name, on='date')
+    # print(type(name))
+    df = pd.DataFrame(name)
+    df.to_csv('trial.csv')
+    # print(df)
+# sales = ["Vauxhall Corsa 2011", "Nissan Note 2014", "Honda Civic 2012", "Vauxhall Corsa 2015", "Vauxhall Mokka 2013", "Hyundai I20 2016"]
+# for sale in range(0, len(sales)):
+#     print(sales[sale])
 
     # Python program to remove to every third element until list becomes empty
     # def removeThirdNumber(int_list):

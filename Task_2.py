@@ -42,20 +42,20 @@ nums = [10,20,30,40,50,60,70,80,90]
 def triplet(arr, arr_len):
 
     found = True
-    for i in range(0, arr_len-2):
+    for x in range(0, arr_len-2):
 
-        for j in range(i+1, arr_len-1):
+        for y in range(x+1, arr_len-1):
 
-            for k in range(j+1, arr_len):
+            for z in range(y+1, arr_len):
 
-                if (arr[i]+arr[j]+arr[k]==0):
-                    print(arr[i]+arr[j],arr[k])
+                if (arr[x]+arr[y]+arr[z]==0):
+                    print(arr[x]+arr[y],arr[z])
                     found = True
 
     if (found == False):
         print("not exist")
 
-arr = [7,8,9,-5,6,-4,-2]
+arr = [7,8,9,-2,6,-3,-1, 8,-5]
 arr_len = len(arr)
 # print(triplet(arr,arr_len))
 
@@ -105,12 +105,12 @@ if __name__=="__main__":
           'It features a dynamic type system and automatic memory management and has a large and comprehensive standard library. ' \
           'The best way we learn anything is by practice and exercise questions. We  have started this section for those (beginner to intermediate) who are familiar with Python'
 
-    freq(str)
+    # freq(str)
 
 
 
 """a trial of unique numbers"""
-#
+
 # numbers = []
 # maxLengthList = 6
 # while len(numbers) <= maxLengthList:
@@ -122,3 +122,164 @@ if __name__=="__main__":
 #         print("No duplicate numbers")
 #     else:
 #         print("Duplicate numbers are present")
+
+
+# A simple Python 3 program
+# to find three elements
+# whose sum is equal to
+# given sum
+
+# Prints all triplets in
+# arr[] with given sum
+def findTriplets(arr, n, sum):
+    for i in range(0, n - 2):
+        for j in range(i + 1, n - 1):
+            for k in range(j + 1, n):
+                if (arr[i] + arr[j] +
+                        arr[k] == sum):
+                    print(arr[i], " ",
+                          arr[j], " ",
+                          arr[k], sep="")
+
+
+# Driver code
+arr = [7,8,9,-2,6,-3,-1, 8,-5]
+n = len(arr)
+# findTriplets(arr, n, 0)
+
+
+def findThreeNumbers(A, arr_size, sum):
+    A.sort()
+
+    for i in range(0, arr_size-2):
+        l = i + 1
+        r = arr_size -1
+        while(l<r):
+            if (A[i], A[l], A[r] == sum):
+                print("Triplet is:", A[i], ',', A[l],',',A[r]);
+                return True
+            elif (A[i] + A[l] + A[r] < sum):
+                l += 1
+            else: #A[i] + A[l] + A[r] > sum
+                r -= 1
+
+#     return False
+# A = [1, 45, 4, 6,10, 8]
+# sum = 22
+# arr_size = len(A)
+# findThreeNumbers(A, arr_size, sum)
+
+
+# def countdown(n):
+#     print(n)
+#     if n < 0:
+#         return
+#     else:
+#         countdown(n-1)
+# countdown(5)
+
+def countdown(n):
+    print(n)
+    if n >= 3:
+        countdown(n - 1)
+
+# countdown(5)
+
+def countdown(n):
+    print(n)
+    while n >= 0:
+        print(n)
+        n -= 1
+# countdown(5)
+
+def combinations(l, n, mylist = []):
+
+    if not n:
+        print(mylist)
+    for i in range(len(l)):
+        mylist.append(l[i])
+        combinations(l[i+1], n-1, mylist)
+        mylist.pop()
+
+# l = ['a','e','i','o','u']
+# n = 4
+# combinations(l, n)
+
+def count_down(start):
+
+    print(start)
+
+    next = start - 1
+    if next > 0:
+        count_down(next)
+
+# count_down(3)
+
+def unique(lst):
+    if n == 0:
+        return [[]]
+    l = []
+    for i in range (0, len(lst)):
+        m = lst[i]
+        remLast = lst[i + 1:]
+
+        for p in unique(remLast, n-1):
+            l.append([m]+p)
+    return l
+if __name__=="__main__":
+
+    arr = 'aeiou'
+    # print(unique([x for x in arr]))
+
+""""""
+def printCombination(arr, n, r):
+    data = [0]*r;
+
+    combinationUntil(arr, data,0,n-1,0,r);
+
+def combinationUntil(arr, data, start, end, index, r):
+    if (index == r):
+        for j in range(r):
+            print(data[j], end= "");
+        print();
+        return ;
+
+    i = start
+    while(1 <= end and end - i + 1 >= r - index):
+        data[index] = arr[i]
+        combinationUntil(arr, data, i + 1, end, index + 1, r)
+
+        i += 1
+
+arr = [1,2,3,4,5]
+r = 3
+n = len(arr)
+printCombination(arr, n, r)
+""""""
+def printCombinations(arr, n, r):
+    data = [0]*r
+
+    combinationUntill(arr, n,r, 0, data, 0)
+
+def combinationUntill(arr, n, r, index, data, i):
+    if (index == r):
+        for j in range(r):
+            print(data[j], end= "")
+        print()
+        return
+    if (i >= n):
+        return
+
+
+    # i = start
+    # while(1 <= end and end - i + 1 >= r - index):
+    data[index] = arr[i]
+    combinationUntill(arr, n, r, index + 1, data, i + 1)
+    combinationUntill(arr, n, r, index, data, i + 1)
+if __name__ == "__main__":
+    arr = [1,2,3,4,5]
+    r = 3
+    n = len(arr)
+    printCombinations(arr, n, r)
+
+
