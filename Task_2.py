@@ -175,19 +175,19 @@ def findThreeNumbers(A, arr_size, sum):
 #     if n < 0:
 #         return
 #     else:
-#         countdown(n-1)
+
+# def countdown(n):
+#     print(n)
+#     while n >= 0:
+# #         countdown(n-1)
+# # countdown(5)
+#
+# def countdown(n):
+#     print(n)
+#     if n >= 3:
+#         countdown(n - 1)
+
 # countdown(5)
-
-def countdown(n):
-    print(n)
-    if n >= 3:
-        countdown(n - 1)
-
-# countdown(5)
-
-def countdown(n):
-    print(n)
-    while n >= 0:
         print(n)
         n -= 1
 # countdown(5)
@@ -276,6 +276,8 @@ def combinationUntill(arr, n, r, index, data, i):
     data[index] = arr[i]
     combinationUntill(arr, n, r, index + 1, data, i + 1)
     combinationUntill(arr, n, r, index, data, i + 1)
+    # print(combinationUntil(1,2,3,4,5))
+
 if __name__ == "__main__":
     arr = [1,2,3,4,5]
     r = 3
